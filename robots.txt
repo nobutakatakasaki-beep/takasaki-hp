@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /thanks.html
+
+# ▼公開後、takasaki-kaikei.pages.dev を実際のURLに書き換えてください
+Sitemap: https://takasaki-kaikei.pages.dev/sitemap.xml
