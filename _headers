@@ -4,8 +4,18 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
 
-/assets/*
-  Cache-Control: public, max-age=604800
+# CSS・JSはファイル名が変わらないので、毎回サーバーに確認させる。
+# 中身が同じときは 304 が返るだけなので速度はほとんど落ちない。
+# （ここを長期キャッシュにすると、修正しても見た人の画面が数日変わらない）
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 画像も差し替えることがあるため1日。以降は再確認しつつ古いものを表示。
+/assets/img/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /admin.html
   X-Robots-Tag: noindex, nofollow
