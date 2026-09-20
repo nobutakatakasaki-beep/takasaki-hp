@@ -1089,23 +1089,31 @@ body.nav-open .drawer__foot {
 /* ---------- 12. 所長紹介 ---------- */
 .prof {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: clamp(2rem, 6vw, 5.5rem);
+  grid-template-columns: minmax(0, 330px) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
 }
 .prof__fig {
+  /* 元画像が小さいので、引き伸ばしすぎないよう上限を設ける */
+  max-width: 330px;
+}
+/* 金の罫は写真そのものに合わせる（キャプションは含めない） */
+.prof__frame {
   position: relative;
+  display: block;
 }
-.prof__fig img {
-  width: 100%;
-  filter: saturate(0.88) contrast(1.04);
-}
-.prof__fig::before {
+.prof__frame::before {
   content: "";
   position: absolute;
   inset: -14px -14px 14px 14px;
   border: 1px solid var(--gold-lt);
   z-index: -1;
+}
+.prof__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(0.88) contrast(1.04);
 }
 .prof__cap {
   margin-top: 1rem;
@@ -1134,7 +1142,7 @@ body.nav-open .drawer__foot {
     grid-template-columns: 1fr;
   }
   .prof__fig {
-    max-width: 340px;
+    max-width: 300px;
   }
 }
 
