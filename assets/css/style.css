@@ -1097,23 +1097,25 @@ body.nav-open .drawer__foot {
   /* 元画像が小さいので、引き伸ばしすぎないよう上限を設ける */
   max-width: 330px;
 }
-/* 金の罫は写真そのものに合わせる（キャプションは含めない） */
+/* 額装：写真の外周を金の罫が均等に回る */
 .prof__frame {
   position: relative;
   display: block;
+  padding: clamp(10px, 2.4vw, 14px);
 }
 .prof__frame::before {
   content: "";
   position: absolute;
-  inset: -14px -14px 14px 14px;
+  inset: 0;
   border: 1px solid var(--gold-lt);
-  z-index: -1;
+  pointer-events: none;
 }
 .prof__frame img {
   display: block;
   width: 100%;
   height: auto;
-  filter: saturate(0.88) contrast(1.04);
+  filter: saturate(0.93) contrast(1.02);
+  box-shadow: 0 16px 34px -22px rgba(16, 27, 43, 0.55);
 }
 .prof__cap {
   margin-top: 1rem;
