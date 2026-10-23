@@ -1,4 +1,5 @@
 import { scoreInquiry, loadRules, VERDICT_JA } from "../_lib/score.js";
+import { ensureTables, postRateState, recordPost } from "../_lib/guard.js";
 
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), {
@@ -56,6 +57,19 @@ export async function onRequestPost({ request, env, waitUntil }) {
   const ip = request.headers.get("cf-connecting-ip") || "";
   const ua = request.headers.get("user-agent") || "";
   const db = env.DB;
+
+  /* ---- 大量送信の抑制（10分に3件・24時間に12件まで） ---- */
+  await ensureTables(db);
+  const rate = await postRateState(db, ip);
+  if (!rate.allowed) {
+    return new Response(JSON.stringify({ ok: false, error: rate.message }), {
+      status: 429,
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+        "retry-after": String(rate.retryAfter || 600),
+      },
+    });
+  }
 
   /* ---- 同一回線からの連投を数える ---- */
   let ipCount = 0;
@@ -125,6 +139,8 @@ export async function onRequestPost({ request, env, waitUntil }) {
       );
     }
   }
+
+  await recordPost(db, ip);
 
   /* ---- 通知メール（設定されているときだけ） ---- */
   if (env.RESEND_API_KEY && env.NOTIFY_TO) {

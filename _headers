@@ -2,7 +2,11 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+  # 一度訪れたブラウザに「このサイトは今後も必ずHTTPSで」と覚えさせる（2年）
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  # 読み込んでよい先を限定し、外部から仕込まれたスクリプトが動かないようにする
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; img-src 'self' data: https://*.googleapis.com https://*.gstatic.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; frame-src https://*.google.com https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com; upgrade-insecure-requests
 
 # CSS・JSはファイル名が変わらないので、毎回サーバーに確認させる。
 # 中身が同じときは 304 が返るだけなので速度はほとんど落ちない。
@@ -23,3 +27,4 @@
 
 /api/*
   Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
