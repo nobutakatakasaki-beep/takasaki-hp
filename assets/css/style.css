@@ -1253,6 +1253,52 @@ body.nav-open .drawer__foot {
   border-bottom: 1px solid var(--gold-lt);
 }
 
+/* それぞれの歩み（写真＋年表） */
+.story {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: clamp(1.8rem, 5vw, 4rem);
+  align-items: start;
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  border-top: 1px solid var(--line);
+}
+.story:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+.story__sum {
+  font-size: 0.92rem;
+  line-height: 2.15;
+  color: #4c525d;
+  margin: 1rem 0 1.8rem;
+  word-break: auto-phrase;
+}
+.story__sum b {
+  font-weight: 500;
+  color: var(--text);
+  border-bottom: 1px solid var(--gold-lt);
+}
+.story .dl > div {
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1.2rem;
+  padding: 0.8rem 0;
+  font-size: 0.88rem;
+}
+.story .dl dt {
+  font-family: var(--latin);
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+}
+@media (max-width: 760px) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+  .story__fig {
+    max-width: 260px;
+  }
+}
+
 /* 年表（細い帯） */
 .years {
   display: grid;
