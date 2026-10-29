@@ -1148,6 +1148,141 @@ body.nav-open .drawer__foot {
   }
 }
 
+/* ---------- 12a. 数字で見る ---------- */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(1.4rem, 4vw, 3rem);
+  margin: 0;
+  text-align: center;
+}
+.facts > div {
+  display: grid;
+  gap: 0.5rem;
+  position: relative;
+}
+.facts > div + div::before {
+  content: "";
+  position: absolute;
+  left: calc(clamp(1.4rem, 4vw, 3rem) / -2);
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  background: var(--line);
+}
+.facts dt {
+  font-family: var(--latin);
+  font-size: clamp(2.8rem, 7vw, 4.2rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  background: var(--foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.facts dt span {
+  font-family: var(--mincho);
+  font-size: 0.34em;
+  margin-left: 0.15em;
+}
+.facts dd {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  line-height: 1.7;
+}
+@media (max-width: 560px) {
+  .facts > div + div::before {
+    display: none;
+  }
+}
+
+/* ---------- 12b. 沿革（三代） ---------- */
+.gens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1.6rem, 4vw, 3.2rem);
+}
+.gen {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+.gen__era {
+  font-family: var(--label);
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
+.gen__era::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.gen__name {
+  font-family: var(--mincho);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+.gen__name small {
+  display: block;
+  font-family: var(--gothic);
+  font-weight: 400;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+.gen__txt {
+  font-size: 0.88rem;
+  line-height: 2.05;
+  color: #4c525d;
+  word-break: auto-phrase;
+}
+.gen__txt b {
+  font-weight: 500;
+  color: var(--text);
+  border-bottom: 1px solid var(--gold-lt);
+}
+
+/* 年表（細い帯） */
+.years {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.years > div {
+  background: var(--paper);
+  padding: 1.3rem 1.2rem;
+}
+.sec--paper .years > div {
+  background: var(--paper-2);
+}
+.years dt {
+  font-family: var(--latin);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+.years dd {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.95;
+  color: #4c525d;
+  word-break: auto-phrase;
+}
+
 /* 経歴テーブル */
 .dl {
   border-top: 1px solid var(--line);
