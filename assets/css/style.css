@@ -1151,51 +1151,95 @@ body.nav-open .drawer__foot {
 /* ---------- 12a. 数字で見る ---------- */
 .facts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(1.4rem, 4vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(1.2rem, 3vw, 2rem);
   margin: 0;
-  text-align: center;
 }
 .facts > div {
   display: grid;
-  gap: 0.5rem;
-  position: relative;
+  gap: 0.2rem;
+  padding: 1.6rem 0.2rem 0;
+  border-top: 2px solid var(--gold);
 }
-.facts > div + div::before {
-  content: "";
-  position: absolute;
-  left: calc(clamp(1.4rem, 4vw, 3rem) / -2);
-  top: 12%;
-  bottom: 12%;
-  width: 1px;
-  background: var(--line);
+.facts > div > span {
+  font-family: var(--label);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 .facts dt {
-  font-family: var(--latin);
-  font-size: clamp(2.8rem, 7vw, 4.2rem);
-  line-height: 0.95;
+  font-family: var(--mincho);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6.4vw, 3.8rem);
+  line-height: 1.05;
   letter-spacing: 0.01em;
-  background: var(--foil);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ink);
+  font-variant-numeric: lining-nums;
+  margin-top: 0.3rem;
 }
 .facts dt span {
-  font-family: var(--mincho);
-  font-size: 0.34em;
-  margin-left: 0.15em;
+  font-size: 0.36em;
+  margin-left: 0.12em;
+  color: var(--gold);
 }
 .facts dd {
-  margin: 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.8;
 }
-@media (max-width: 560px) {
-  .facts > div + div::before {
-    display: none;
-  }
+
+/* ---------- 12a-2. 玄関の帯 ---------- */
+.entrance {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: clamp(260px, 38vw, 440px);
+  background: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+.entrance img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: saturate(0.85) contrast(1.05) brightness(0.86);
+}
+.entrance::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    rgba(16, 27, 43, 0.9) 0%,
+    rgba(16, 27, 43, 0.55) 42%,
+    rgba(16, 27, 43, 0.15) 75%
+  );
+}
+.entrance__in {
+  padding: clamp(1.8rem, 4vw, 3rem) 0;
+  color: var(--cream);
+}
+.entrance__t {
+  font-family: var(--mincho);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3vw, 1.9rem);
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  margin-top: 0.8rem;
+  word-break: auto-phrase;
+}
+.entrance__d {
+  margin-top: 0.7rem;
+  font-size: 0.86rem;
+  line-height: 2;
+  color: rgba(244, 239, 230, 0.82);
 }
 
 /* ---------- 12b. 沿革（三代） ---------- */
