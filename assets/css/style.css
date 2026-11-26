@@ -2119,6 +2119,13 @@ body.nav-open .drawer__foot {
   line-height: 1.9;
 }
 
+/* 見出し直下ではなく、表のあとに置く注記 */
+.kitei--after,
+.prose .kitei--after {
+  margin-top: 0.6rem;
+  color: var(--muted);
+}
+
 /* 項目と説明の対 */
 .deflist {
   margin: 0;
