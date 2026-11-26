@@ -2072,6 +2072,151 @@ body.nav-open .drawer__foot {
   color: var(--muted);
 }
 
+/* ---------- 19b-3. 情報公表ページ ---------- */
+
+/* 事業所名と公表日 */
+.pubhead {
+  border-top: 2px solid var(--gold);
+  border-bottom: 1px solid var(--line);
+  padding-block: 1.4rem;
+}
+.pubhead dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem 2.4rem;
+}
+@media (min-width: 540px) {
+  .pubhead dl {
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+}
+.pubhead dt {
+  font-family: var(--label);
+  font-size: 0.6rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+.pubhead dd {
+  margin: 0;
+  font-family: var(--mincho);
+  font-weight: 700;
+  font-size: 1.22rem;
+  letter-spacing: 0.06em;
+}
+
+/* 根拠や前提を添える小さな行 */
+.kitei {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-top: -0.9rem;
+}
+.prose .kitei {
+  margin-bottom: 1.4rem;
+  line-height: 1.9;
+}
+
+/* 項目と説明の対 */
+.deflist {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.deflist > div {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 0 1.8rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.deflist dt {
+  font-family: var(--mincho);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.95;
+  word-break: auto-phrase;
+}
+.deflist dd {
+  margin: 0;
+  line-height: 1.95;
+  word-break: auto-phrase;
+}
+@media (max-width: 620px) {
+  .deflist > div {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+  .deflist dt {
+    color: var(--gold);
+    font-size: 0.95rem;
+  }
+}
+
+/* 実績の表 */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1rem;
+  font-variant-numeric: lining-nums;
+}
+.tbl caption {
+  text-align: left;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  padding-bottom: 0.7rem;
+}
+.tbl th,
+.tbl td {
+  padding: 0.95rem 1rem;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.8;
+  text-align: left;
+}
+.tbl thead th {
+  font-family: var(--label);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding-block: 0.6rem;
+}
+.tbl tbody th {
+  font-family: var(--mincho);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  width: 55%;
+}
+.tbl tbody tr:last-child th,
+.tbl tbody tr:last-child td {
+  border-bottom: 0;
+}
+.tbl tfoot th,
+.tbl tfoot td {
+  font-family: var(--mincho);
+  font-weight: 700;
+  border-bottom: 0;
+  border-top: 2px solid var(--gold);
+}
+
+/* ページ末尾の注記 */
+.pubnote {
+  margin-top: 2.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  line-height: 2;
+  color: var(--muted);
+}
+.pubnote__url {
+  font-family: var(--label);
+  letter-spacing: 0.02em;
+  word-break: break-all;
+}
+
 /* ---------- 19c. よくあるご質問 ---------- */
 .faq {
   border-top: 1px solid var(--line);
@@ -2177,4 +2322,148 @@ body.nav-open .drawer__foot {
   background: var(--ink);
   color: var(--cream);
   padding: 0.8rem 1.4rem;
+}
+
+/* ---------- 21. 印刷 ---------- */
+@media print {
+  /* 画面でしか意味のないものを落とす */
+  .hdr,
+  .drawer,
+  .burger,
+  .skip,
+  .crumb,
+  .cta,
+  .ftr__top > div:not(.ftr__brand),
+  .phead__crest,
+  .btn,
+  .scrim {
+    display: none !important;
+  }
+
+  /* 出現アニメーションの途中で刷られないように */
+  [data-reveal],
+  [data-reveal].is-in,
+  .split span {
+    opacity: 1 !important;
+    transform: none !important;
+    translate: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 10.5pt;
+  }
+  .sec,
+  .sec--paper {
+    background: #fff !important;
+    padding-block: 0 !important;
+  }
+  .wrap,
+  .wrap--wide {
+    max-width: none !important;
+    padding-inline: 0 !important;
+  }
+
+  /* 見出し帯は紙では白地に */
+  .phead {
+    background: #fff !important;
+    color: #000 !important;
+    padding-block: 0 1rem !important;
+    border-bottom: 2px solid #000;
+    min-height: 0 !important;
+  }
+  .phead h1 {
+    color: #000 !important;
+    font-size: 17pt !important;
+  }
+  .eyebrow {
+    color: #555 !important;
+  }
+
+  /* 罫と文字を黒に寄せて、薄い金が飛ばないように */
+  .pubhead {
+    border-top-color: #000 !important;
+    border-bottom-color: #888 !important;
+  }
+  .pubhead dt,
+  .kitei,
+  .tbl thead th {
+    color: #333 !important;
+  }
+  .prose h2 {
+    border-left-color: #000 !important;
+    font-size: 13pt !important;
+    margin-top: 2.2rem !important;
+  }
+  .deflist,
+  .deflist > div,
+  .tbl th,
+  .tbl td {
+    border-color: #888 !important;
+  }
+  .tbl thead th,
+  .tbl tfoot th,
+  .tbl tfoot td {
+    border-color: #000 !important;
+  }
+  .pubnote {
+    color: #333 !important;
+    border-top-color: #888 !important;
+  }
+
+  /* 項目や表の行が、ページの切れ目で割れないように */
+  .prose h2,
+  .prose h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .deflist > div,
+  .tbl tr,
+  .tbl,
+  .pubhead,
+  .pubnote {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* フッターは事業所名と所在地だけ、小さく残す */
+  .ftr {
+    background: #fff !important;
+    color: #000 !important;
+    padding-block: 1.2rem !important;
+    border-top: 1px solid #888;
+    margin-top: 2rem;
+  }
+  .ftr img,
+  .ftr__en,
+  .ftr__bottom {
+    display: none !important;
+  }
+  .ftr__top {
+    display: block !important;
+  }
+  .ftr__ja,
+  .ftr p,
+  .ftr span,
+  .ftr div {
+    color: #000 !important;
+  }
+  .ftr__ja {
+    font-size: 11pt;
+  }
+  .tbl caption {
+    color: #333 !important;
+  }
+  .ftr a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  @page {
+    margin: 16mm 15mm;
+  }
 }
